@@ -20,7 +20,7 @@
   <script>
     var socket = io();
 
-    socket.on('connect', function( ) {
+    socket.on('connect', function() {
       console.log('conectado al servidor');
     });
 
@@ -28,14 +28,18 @@
       console.log('desconectado del servidor');
     });
 
-    socket.emit('message', {
-      user: 'jose',
-      message: 'hola mundo'
+    socket.on('message', function(payload) {
+      console.log("esuchando: ", payload);
     });
 
-    socket.on('message', function(payload) {
-      console.log("esuchando: ",payload);
+    socket.on("active-bands", function(bands) {
+
+      // console.table(payload); remove colum index
+      console.clear();
+      console.table(bands);
     });
+
+    
   </script>
 
 </body>
